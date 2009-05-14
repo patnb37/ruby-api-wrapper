@@ -1,10 +1,8 @@
 module Soundcloud
   module Models
-
-
     class Track < Base
       has_many :permissions, :comments
-      can_be_an_unbulky_changeable :favorite
+      can_be_a_single_changeable :favorite
             
       cattr_accessor :element_name
       self.element_name = 'track'

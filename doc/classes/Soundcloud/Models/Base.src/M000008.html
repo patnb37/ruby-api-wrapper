@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>has_many_single_changeable (Soundcloud::Models::Base)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/soundcloud/models/base.rb, line 68</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">has_many_single_changeable</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+        <span class="ruby-identifier">args</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span> 
+          <span class="ruby-identifier">singular</span> = <span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">singularize</span>
+          <span class="ruby-identifier">define_method</span>(<span class="ruby-node">&quot;has_#{singular}?&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">object_or_id</span><span class="ruby-operator">|</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">object_or_id</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">String</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">object_or_id</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Integer</span>          
+              <span class="ruby-identifier">look_for_id</span> = <span class="ruby-identifier">object_or_id</span>
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-identifier">look_for_id</span> = <span class="ruby-identifier">object_or_id</span>.<span class="ruby-identifier">id</span>
+            <span class="ruby-keyword kw">end</span>
+              
+            <span class="ruby-keyword kw">begin</span>
+              <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">get_without_decoding</span> <span class="ruby-node">&quot;/#{self.element_name.pluralize}/#{self.id}/#{singular.pluralize}/#{look_for_id}&quot;</span>
+              <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+            <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">ActiveResource</span><span class="ruby-operator">::</span><span class="ruby-constant">ResourceNotFound</span>
+              <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+            <span class="ruby-keyword kw">end</span>          
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>    
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

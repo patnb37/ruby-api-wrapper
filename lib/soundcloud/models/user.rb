@@ -2,8 +2,8 @@ module Soundcloud
   module Models
     class User < Base
       has_many :tracks, :contacts, :comments, :favorites, :playlists
-      has_many_unbulky_changeable :contacts, :favorites
-      can_be_an_unbulky_changeable :contact
+      has_many_single_changeable :contacts, :favorites
+      can_be_a_single_changeable :contact
       
       cattr_accessor :element_name      
       self.element_name = 'user'

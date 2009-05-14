@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Soundcloud::Models::Base</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Soundcloud::Models::Base</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/soundcloud/models/base_rb.html">
+                lib/soundcloud/models/base.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                OAuthActiveResource::Resource
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000007">can_be_a_single_changeable</a>&nbsp;&nbsp;
+      <a href="#M000008">has_many_single_changeable</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000007" class="method-detail">
+        <a name="M000007"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000007.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000007.html');return false;">
+          <span class="method-name">can_be_a_single_changeable</span><span class="method-args">(*args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="Base.html#M000008">has_many_single_changeable</a> and <a
+href="Base.html#M000007">can_be_a_single_changeable</a> is mostly used in
+combination with has_many.
+</p>
+<p>
+<a href="Base.html#M000007">can_be_a_single_changeable</a> expects to have
+a resource /me which is the logged-in user
+</p>
+<p>
+like in self.has_many you have a resource user with a sub resource friends,
+but its not allowed to send a PUT /me/friends to update the list of friends
+instead to add or remove a friend you have to send a GET/PUT/DELETE to
+/me/friends/{user_id}
+</p>
+<p>
+Example:
+</p>
+<pre>
+  class User &lt; Resource
+    has_many :friends
+    can_be_a_single_changeable :friend
+    has_many_single_changeable :friends
+  end
+
+  me = User.find(:one, :from =&gt; '/me')
+  friend = me.friends.first
+  stranger = User.find(235)
+
+  friend.is_friend?
+ =&gt; true
+  stranger.is_friend?
+ =&gt; false
+
+  strange.add_friend!
+  stranger.is_friend?
+ =&gt; true
+
+  stranger.remove_friend!
+  stranger.is_friend?
+ =&gt; false
+
+  friend.has_friend?(stranger.id)
+ =&gt; checks if stranger and friend are friend, returns true or false
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000008" class="method-detail">
+        <a name="M000008"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000008.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000008.html');return false;">
+          <span class="method-name">has_many_single_changeable</span><span class="method-args">(*args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+see <a href="Base.html#M000007">can_be_a_single_changeable</a>
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>
