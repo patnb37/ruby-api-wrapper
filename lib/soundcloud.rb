@@ -7,7 +7,7 @@ require 'rubygems'
 gem 'oauth'
 require 'oauth'
 
-gem 'oauth-active-resource'
+gem 'jwagener-oauth-active-resource'
 require 'oauth_active_resource'
 
 module Soundcloud  
@@ -15,9 +15,9 @@ module Soundcloud
    # You have to register your application on soundcloud.com to get a consumer token and secret.
    # Optionally you can specify another provider site (i.e. http://api.sandbox-soundcloud.com)
    # Default provider site is http://api.soundcloud.com
-   def self.consumer(consumer_token,consumer_secret, provider_site = 'http://api.soundcloud.com')
+   def self.consumer(consumer_token,consumer_secret, site = 'http://api.soundcloud.com')
     return OAuth::Consumer.new(consumer_token, consumer_secret, {
-        :site               => provider_site,
+        :site               => site,
         :request_token_path => "/oauth/request_token",
         :access_token_path  => "/oauth/access_token",
         :authorize_path     => "/oauth/authorize",
@@ -38,7 +38,6 @@ module Soundcloud
   #  => unauthenticated to "http://api.soundcloud.com"
   #   cl = Soundcloud.register({:access_token => your_access_token, :site => "http://api.sandbox-soundcloud.com"})
   #  => authenticated connection to soundcloud sandbox
-  #
   #
   def self.register(options = {})
     options[:site] = options[:site] || 'http://api.soundcloud.com'

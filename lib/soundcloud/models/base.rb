@@ -53,8 +53,6 @@ module Soundcloud
           end
           
           define_method("add_#{singular}!") do
-          p "add #{singular}"
-          p "/me/#{singular.pluralize}/#{self.id}"
             self.connection.put "/me/#{singular.pluralize}/#{self.id}"
           end                    
 
