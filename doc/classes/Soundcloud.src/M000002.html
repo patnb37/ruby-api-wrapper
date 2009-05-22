@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File lib/soundcloud.rb, line 43</span>
+  <pre><span class="ruby-comment cmt"># File lib/soundcloud.rb, line 42</span>
   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">register</span>(<span class="ruby-identifier">options</span> = {})
     <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:site</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:site</span>] <span class="ruby-operator">||</span> <span class="ruby-value str">'http://api.soundcloud.com'</span>
     <span class="ruby-constant">OAuthActiveResource</span>.<span class="ruby-identifier">register</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">ancestors</span>.<span class="ruby-identifier">first</span>, <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">ancestors</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">const_get</span>(<span class="ruby-value str">'Models'</span>), <span class="ruby-identifier">options</span>)

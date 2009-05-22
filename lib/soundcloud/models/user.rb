@@ -1,12 +1,13 @@
 module Soundcloud
   module Models
     
-    
-    # Gives you access to the Soundcloud User Resource
+    # Soundcloud User resource
+    #
+    # http://wiki.github.com/soundcloud/api/documentation#user
     #
     # Examples:
     #   user = client.User.find('userABC')
-    #  => gets the user userABC
+    #  => gets the user with username userABC
     #
     #   erics = client.User.find(:all, :params=> {:q => "eric"})
     #   erics.each do |user|
@@ -34,10 +35,10 @@ module Soundcloud
       self.element_name = 'user'
     end
     
-    class Permission < User
+    class Permission < User #:nodoc: 
     end
     
-    class Contact < User
+    class Contact < User #:nodoc:
     end
   end
 end

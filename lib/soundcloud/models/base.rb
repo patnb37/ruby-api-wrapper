@@ -1,6 +1,6 @@
 module Soundcloud
   module Models
-    class Base < OAuthActiveResource::Resource
+    class Base < OAuthActiveResource::Resource #:nodoc:
       #      self.site = 'http://api.soundcloud.dev'
       
       

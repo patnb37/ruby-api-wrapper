@@ -38,5 +38,10 @@ describe 'Soundcloud::Models::Playlist' do
     pl.tracks.count.should be == old_count
   end
   
+  it 'should belong to a user' do
+    pl = @sc.Playlist.find('static-test-playlist')
+    # check against online attribute, to make sure the complete user is loaded, not the nested user 
+    pl.user.online.should_not be nil
+  end
   
 end

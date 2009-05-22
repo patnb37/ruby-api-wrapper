@@ -8,8 +8,9 @@ begin
     gem.summary = %Q{TODO}
     gem.email = "johannes@wagener.cc"
     gem.homepage = "http://github.com/soundcloud/ruby-api-wrapper"
-    gem.authors = ["jwagener"]
-
+    gem.authors = ["Johannes Wagener"]
+    gem.add_dependency "jwagener-oauth-active-resource"    
+    gem.add_dependency "oauth"        
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 rescue LoadError

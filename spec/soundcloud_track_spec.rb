@@ -71,6 +71,7 @@ describe "Soundcloud::Models::Track" do
   it 'should be able to download a track (unauthenticated)' do 
     usc = Soundcloud.register({:site => soundcloud_site})
     track = usc.Track.find(:one, :from => '/users/api-test-2/tracks/track1-2')
+    #    File.open('/tmp/sc-track', 'w') {|f| f.write( track.download ) }
     track.download
   end
   
@@ -79,5 +80,8 @@ describe "Soundcloud::Models::Track" do
     slow_tracks.each { |track| track.bpm.should be <= 90.0 }
   end
   
-  
+  it 'should belong to a user' do
+    # check against online attribute, to make sure the complete user is loaded, not the nested user 
+    @test_track_1.user.online.should_not be nil
+  end
 end
