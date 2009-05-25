@@ -3,15 +3,17 @@ module Soundcloud
     
     # Soundcloud Event resource
     #
+    # Look up the resource attributes and filtering usage here:
+    #
     # http://wiki.github.com/soundcloud/api/documentation#event
     #
     # Examples:
     #
-    #   client.Event.find(:all,:params => {:filter => 'drop'})
-    #  => get all dropbox events
+    #   # find the last 50 (default soundcloud limit) dropbox events    
+    #   sc_client.Event.find(:all,:params => {:filter => 'drop'})
     #    
-    #   client.Event.find(:all)
-    #  => get all events
+    #   # find the last 50 (default soundcloud limit)  events    
+    #   sc_client.Event.find(:all)
     #
     class Event < Base    
       belongs_to :user, :track

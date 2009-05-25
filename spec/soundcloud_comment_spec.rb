@@ -9,7 +9,7 @@ describe 'Soundcloud::Models::Comment' do
     @track = @sc.Track.find('static-test-track')
   end
   
-  it 'should be able to create and deleta a new comment for a track' do
+  it 'should be able to create and delete a new comment for a track' do
 
     old_count = @track.comments.count  
     comment = @sc.Comment.create({:track_id => @track.id, :body => "new API Test comment"})
@@ -27,5 +27,9 @@ describe 'Soundcloud::Models::Comment' do
     comment.track.id.should_not be nil
   end
   
+  it 'should create a new comment and associate the track_id' do
+    comment = @sc.Comment.new({:track => @track})
+    comment.track_id.should be @track.id
+  end
   
 end

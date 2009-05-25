@@ -84,6 +84,9 @@
 resource
 </p>
 <p>
+Look up the resource attributes and filtering usage here:
+</p>
+<p>
 <a
 href="http://wiki.github.com/soundcloud/api/documentation#user">wiki.github.com/soundcloud/api/documentation#user</a>
 </p>
@@ -91,25 +94,31 @@ href="http://wiki.github.com/soundcloud/api/documentation#user">wiki.github.com/
 Examples:
 </p>
 <pre>
-  user = client.User.find('userABC')
- =&gt; gets the user with username userABC
+  # gets the user with username userABC
+  user = sc_client.User.find('userABC')
 
-  erics = client.User.find(:all, :params=&gt; {:q =&gt; &quot;eric&quot;})
-  erics.each do |user|
+  # finds all users named joe and print their usernames
+  joes = sc_client.User.find(:all, :params=&gt; {:q =&gt; &quot;joe&quot;})
+  joes.each do |user|
     p user.username
   end
- =&gt; finds all users named eric and print their usernames
 
-  me = client.User.find(:one, :from =&gt; '/me')
- =&gt; gets the logged-in user
+  # gets the logged-in user
+  me = client.User.find_me
 
-  eric1 = erics.first
-  eric2 = erics[1]
-  eric1.has_contact?(eric2)
- =&gt; checks if the first user named eric is following the second user named eric
+  # checks if the first user named joe is following the second user named joe
+  joe1 = joes.first
+  joe2 = joes[1]
+  joe1.has_contact?(joe2)
 
-  eric2.add_contact!
- =&gt; makes the loggedin user following eric2
+  # makes the loggedin user following joe2
+  joe2.add_contact!
+
+  # Display all tracks of a user
+  user = sc_client.User.find('some-user')
+  user.tracks.each do |track|
+    p  track.title
+  end
 </pre>
 
     </div>
@@ -117,6 +126,13 @@ Examples:
 
    </div>
 
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000008">find_me</a>&nbsp;&nbsp;
+      </div>
+    </div>
 
   </div>
 
@@ -133,6 +149,28 @@ Examples:
 
 
     <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000008" class="method-detail">
+        <a name="M000008"></a>
+
+        <div class="method-heading">
+          <a href="User.src/M000008.html" target="Code" class="method-signature"
+            onclick="popupCode('User.src/M000008.html');return false;">
+          <span class="method-name">find_me</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Convenience method to find the logged in user
+</p>
+        </div>
+      </div>
+
+
+    </div>
 
 
   </div>

@@ -84,18 +84,41 @@
 href="Comment.html">Comment</a> resource
 </p>
 <p>
+Look up the resource attributes and filtering usage here:
+</p>
+<p>
 <a
 href="http://wiki.github.com/soundcloud/api/documentation#comment">wiki.github.com/soundcloud/api/documentation#comment</a>
 </p>
 <p>
-See <a href="Track.html">Soundcloud::Models::Track</a>
+Examples:
 </p>
+<pre>
+  # add a comment to a track
+  some_track = sc_client.Track.find('some-track')
+  sc_client.Comment.create({:track =&gt; some_track, :body =&gt; 'Nice Track!'})
+
+  # optionally you can add a timestamp (in milliseconds)
+  sc_client.Comment.create({:track =&gt; some_track, :body =&gt; 'nice drums!', :timestamp =&gt; 5000})
+
+  # display all comments of some track
+  some_track.comments.each do |comment|
+    p &quot;#{comment.user.full_name} wrote: #{comment.body}&quot;
+  end
+</pre>
 
     </div>
 
 
    </div>
 
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000007">new</a>&nbsp;&nbsp;
+      </div>
+    </div>
 
   </div>
 
@@ -112,6 +135,25 @@ See <a href="Track.html">Soundcloud::Models::Track</a>
 
 
     <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000007" class="method-detail">
+        <a name="M000007"></a>
+
+        <div class="method-heading">
+          <a href="Comment.src/M000007.html" target="Code" class="method-signature"
+            onclick="popupCode('Comment.src/M000007.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(options)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+
+    </div>
 
 
   </div>

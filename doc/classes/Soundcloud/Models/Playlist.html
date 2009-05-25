@@ -84,12 +84,35 @@
 href="Playlist.html">Playlist</a> resource
 </p>
 <p>
+Note: At the moment, you cant create or delete playlists via <a
+href="../../Soundcloud.html">Soundcloud</a> API
+</p>
+<p>
+Look up the resource attributes and filtering usage here:
+</p>
+<p>
 <a
 href="http://wiki.github.com/soundcloud/api/documentation#playlist">wiki.github.com/soundcloud/api/documentation#playlist</a>
 </p>
 <p>
 Examples:
 </p>
+<pre>
+  # Find a Playlist and add a track to it
+  playlist = sc_client.Playlist('my-playlist')
+  track = sc_client.Track('my-track')
+  playlist.tracks &lt;&lt; track
+  playlist.save
+
+  # Allow a user to access this track
+  some_user = sc_client.User.find('some-user')
+  playlist.permissions &lt;&lt; some_user
+  playlist.permissions.save
+
+  # Delete first song in playlist
+  playlist.tracks.delete playlist.tracks.first
+  playlist.save
+</pre>
 
     </div>
 
@@ -100,7 +123,7 @@ Examples:
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000007">new</a>&nbsp;&nbsp;
+      <a href="#M000009">new</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -122,12 +145,12 @@ Examples:
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000007" class="method-detail">
-        <a name="M000007"></a>
+      <div id="method-M000009" class="method-detail">
+        <a name="M000009"></a>
 
         <div class="method-heading">
-          <a href="Playlist.src/M000007.html" target="Code" class="method-signature"
-            onclick="popupCode('Playlist.src/M000007.html');return false;">
+          <a href="Playlist.src/M000009.html" target="Code" class="method-signature"
+            onclick="popupCode('Playlist.src/M000009.html');return false;">
           <span class="method-name">new</span><span class="method-args">(*args)</span>
           </a>
         </div>

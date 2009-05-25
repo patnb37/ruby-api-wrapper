@@ -48,6 +48,11 @@ describe "Soundcloud::Models::User" do
     @api_test_2.has_favorite?(track1.id).should be true    
     @api_test_2.has_favorite?(track2).should be false
   end      
+  
+  it 'should find the logged in user' do 
+    my_user = @sc.User.find_me
+    my_user.username.should_not be nil
+  end
 
 end
 

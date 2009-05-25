@@ -84,6 +84,9 @@
 href="Event.html">Event</a> resource
 </p>
 <p>
+Look up the resource attributes and filtering usage here:
+</p>
+<p>
 <a
 href="http://wiki.github.com/soundcloud/api/documentation#event">wiki.github.com/soundcloud/api/documentation#event</a>
 </p>
@@ -91,11 +94,11 @@ href="http://wiki.github.com/soundcloud/api/documentation#event">wiki.github.com
 Examples:
 </p>
 <pre>
-  client.Event.find(:all,:params =&gt; {:filter =&gt; 'drop'})
- =&gt; get all dropbox events
+  # find the last 50 (default soundcloud limit) dropbox events
+  sc_client.Event.find(:all,:params =&gt; {:filter =&gt; 'drop'})
 
-  client.Event.find(:all)
- =&gt; get all events
+  # find the last 50 (default soundcloud limit)  events
+  sc_client.Event.find(:all)
 </pre>
 
     </div>

@@ -1,8 +1,10 @@
 require 'rubygems'
 require 'rake'
 
-begin
+begin  
   require 'jeweler'
+
+
   Jeweler::Tasks.new do |gem|
     gem.name = "ruby-api-wrapper"
     gem.summary = %Q{TODO}
@@ -11,11 +13,11 @@ begin
     gem.authors = ["Johannes Wagener"]
     gem.add_dependency "jwagener-oauth-active-resource"    
     gem.add_dependency "oauth"        
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
-  end
+  end  
 rescue LoadError
-  puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
+  puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"  
 end
+
 
 require 'spec/rake/spectask'
 Spec::Rake::SpecTask.new(:spec) do |spec|
@@ -28,7 +30,6 @@ Spec::Rake::SpecTask.new(:rcov) do |spec|
   spec.pattern = 'spec/**/*_spec.rb'
   spec.rcov = true
 end
-
 
 task :default => :spec
 
@@ -46,4 +47,3 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
-

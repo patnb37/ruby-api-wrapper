@@ -145,11 +145,18 @@
       
         <div class="method-description">
           <p>
-Will create an OAuth Consumer for you. You have to <a
-href="Soundcloud.html#M000002">register</a> your application on
-soundcloud.com to get a <a href="Soundcloud.html#M000001">consumer</a>
-token and secret. Optionally you can specify another provider site (i.e. <a
+Will create an OAuth Consumer for you.
+</p>
+<p>
+You have to <a href="Soundcloud.html#M000002">register</a> your application
+on soundcloud.com to get a <a href="Soundcloud.html#M000001">consumer</a>
+token and secret.
+</p>
+<p>
+Optionally you can specify another provider site (i.e. <a
 href="http://api.sandbox-soundcloud.com">api.sandbox-soundcloud.com</a>)
+</p>
+<p>
 Default provider site is <a
 href="http://api.soundcloud.com">api.soundcloud.com</a>
 </p>
@@ -175,17 +182,18 @@ module is bound to the given OAuth access token.
 Options:
 </p>
 <pre>
- :access_token = your_oauth_access token
- :site = soundcloud_api_site (i.e. &quot;http://api.sandbox-soundcloud.com&quot;, defaults to &quot;http://api.soundcloud.com&quot;)
+ :access_token = your oauth access token
+ :site = soundcloud api site (i.e. &quot;http://api.sandbox-soundcloud.com&quot;, defaults to &quot;http://api.soundcloud.com&quot;)
 </pre>
 <p>
 Examples:
 </p>
 <pre>
+  # unauthenticated to &quot;http://api.soundcloud.com&quot;
   cl = Soundcloud.register()
- =&gt; unauthenticated to &quot;http://api.soundcloud.com&quot;
+
+  # authenticated connection to soundcloud sandbox
   cl = Soundcloud.register({:access_token =&gt; your_access_token, :site =&gt; &quot;http://api.sandbox-soundcloud.com&quot;})
- =&gt; authenticated connection to soundcloud sandbox
 </pre>
         </div>
       </div>

@@ -3,16 +3,19 @@ module Soundcloud
     
     # Soundcloud Track resource
     #
+    # Look up the resource attributes and filtering usage here:
+    #    
     # http://wiki.github.com/soundcloud/api/documentation#track
     #
     # Examples:
     #
-    #   some_user_tracks = client.Track.find(:all, :from => '/users/some_user/tracks')
-    #  => gets the tracks from some_user
+    #   # gets the tracks from some_user
+    #   some_user_tracks = sc_client.Track.find(:all, :from => '/users/some_user/tracks')
     #
+    #   # gets the first song from some_user_tracks
     #   first_song = some_user_tracks.first
-    #  => gets the first song from some_user_tracks
     #
+    #   # prints all comments of first_song with username, timestamp (can be nil) and comment body
     #   first_song.comments.each do |comment| 
     #     if comment.timestamp.nil?
     #       timestamp = ""
@@ -21,26 +24,25 @@ module Soundcloud
     #     end
     #     p "#{comment.user.username} #{timestamp}: #{comment.body}"
     #   end
-    #  => Prints all comments of first_song with username, timestamp and  body
     #
     #
-    #   slow_tracks  = client.Track.find(:all, :params => { "bpm[to]" => "100"} )
-    #  => Gets tracks with a BPM <= 100
+    #   # gets tracks with a BPM <= 100    
+    #   slow_tracks  = sc_client.Track.find(:all, :params => { "bpm[to]" => "100"} )
     #
-    #   new_track = client.Track.new
+    #   # create a new Track on Soundcloud with some_sound_file.mp3 as asset data    
+    #   new_track = sc_client.Track.new
     #   new_track.title = 'New Track'
     #   new_track.sharing = 'private'
     #   new_track.set_asset_data(File.new('some_sound_file.wav')
     #   new_track.save
-    #  => Create a new Track on Soundcloud with some_sound_file.mp3 as asset data
     #   
+    #   # downloads the original soundfile. some_sound_file.wav and another_sound_file.wav should be equal
     #   File.open('another_sound_file.wav', 'w') {|f| f.write( new_track.download ) }
-    #  => Downloads the original soundfile. some_sound_file.wav and another_sound_file.wav should be equal
     #
-    #   some_user = client.User.find('some_user')
+    #   # gives some_user permission to access the new_track    
+    #   some_user = sc_client.User.find('some_user')
     #   new_track.permissions << some_user
     #   new_track.permissions.save
-    #  => Gives some_user permission to access the new_track
     #
     #  
     #

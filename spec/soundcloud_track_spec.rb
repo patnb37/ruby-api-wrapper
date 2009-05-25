@@ -84,4 +84,5 @@ describe "Soundcloud::Models::Track" do
     # check against online attribute, to make sure the complete user is loaded, not the nested user 
     @test_track_1.user.online.should_not be nil
   end
+
 end

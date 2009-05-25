@@ -39,4 +39,5 @@ describe "Soundcloud" do
     sc.to_s.should match(/Soundcloud::.+/)
     lambda{ sc.User.find(:one, :from => "/me")}.should_not raise_error ActiveResource::UnauthorizedAccess
   end  
+  
 end
