@@ -53,6 +53,15 @@ describe "Soundcloud::Models::User" do
     my_user = @sc.User.find_me
     my_user.username.should_not be nil
   end
+  
+  it 'should find some fans of a user' do 
+    @api_test_2.fans.count.should be >= 1
+  end
+  
+  it 'should find exactly one fan / two fans' do 
+    @api_test_2.fans({:limit => 1}).count.should be == 1
+    @api_test_2.fans({:limit => 2}).count.should be == 2
+  end
 
 end
 

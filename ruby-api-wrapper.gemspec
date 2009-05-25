@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{ruby-api-wrapper}
-  s.version = "0.1.5"
+  s.version = "0.1.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Johannes Wagener"]
@@ -10,10 +10,12 @@ Gem::Specification.new do |s|
   s.email = %q{johannes@wagener.cc}
   s.extra_rdoc_files = [
     "LICENSE",
+    "README.html",
     "README.rdoc"
   ]
   s.files = [
     "LICENSE",
+    "README.html",
     "README.rdoc",
     "Rakefile",
     "VERSION.yml",

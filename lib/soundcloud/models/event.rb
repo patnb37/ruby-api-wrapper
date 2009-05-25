@@ -1,8 +1,5 @@
 module Soundcloud
   module Models
-    
-    # Soundcloud Event resource
-    #
     # Look up the resource attributes and filtering usage here:
     #
     # http://wiki.github.com/soundcloud/api/documentation#event

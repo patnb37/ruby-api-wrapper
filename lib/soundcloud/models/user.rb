@@ -1,10 +1,7 @@
 module Soundcloud
   module Models
-    
-    # Soundcloud User resource
-    #
     # Look up the resource attributes and filtering usage here:
-    #    
+    #        
     # http://wiki.github.com/soundcloud/api/documentation#user
     #
     # Examples:
@@ -29,15 +26,24 @@ module Soundcloud
     #   joe2.add_contact!
     #
     #
-    #   # Display all tracks of a user
+    #   # Display 50 (Soundcloud API limit) tracks of a user
     #   user = sc_client.User.find('some-user')
     #   user.tracks.each do |track|
     #     p  track.title
     #   end
-    
+    #
+    #   # Get all fans of a user
+    #   fans = []
+    #   limit = 50
+    #   begin 
+    #     some_fans = famous_dj.fans({:offset => fans.count, :limit => limit})
+    #     fans += some_fans
+    #   end while some_fans.count >= limit
+    #
+    #
     
     class User < Base
-      has_many :tracks, :contacts, :comments, :favorites, :playlists
+      has_many :tracks, :contacts, :comments, :favorites, :playlists, :fans
       has_many_single_changeable :contacts, :favorites
       can_be_a_single_changeable :contact
       
@@ -55,6 +61,9 @@ module Soundcloud
     
     class Contact < User #:nodoc:
     end
+    
+    class Fan < User #:nodoc:
+    end    
   end
 end
 

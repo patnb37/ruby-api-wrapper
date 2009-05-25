@@ -1,21 +1,18 @@
 module Soundcloud
-  module Models
-    
-    # Soundcloud Track resource
-    #
+  module Models  
     # Look up the resource attributes and filtering usage here:
-    #    
+    #        
     # http://wiki.github.com/soundcloud/api/documentation#track
     #
     # Examples:
     #
-    #   # gets the tracks from some_user
-    #   some_user_tracks = sc_client.Track.find(:all, :from => '/users/some_user/tracks')
+    #   # gets 50 (Soundcloud API limit) tracks from some_user
+    #   some_user_tracks = some_user.tracks
     #
     #   # gets the first song from some_user_tracks
     #   first_song = some_user_tracks.first
     #
-    #   # prints all comments of first_song with username, timestamp (can be nil) and comment body
+    #   # prints 50 (Soundcloud API limit) comments of first_song with username, timestamp (can be nil) and comment body
     #   first_song.comments.each do |comment| 
     #     if comment.timestamp.nil?
     #       timestamp = ""
@@ -26,8 +23,9 @@ module Soundcloud
     #   end
     #
     #
-    #   # gets tracks with a BPM <= 100    
+    #   # gets 50 (Soundcloud API limit) tracks with a BPM <= 100    
     #   slow_tracks  = sc_client.Track.find(:all, :params => { "bpm[to]" => "100"} )
+    #
     #
     #   # create a new Track on Soundcloud with some_sound_file.mp3 as asset data    
     #   new_track = sc_client.Track.new
@@ -55,8 +53,6 @@ module Soundcloud
             
       cattr_accessor :element_name
       self.element_name = 'track'
-      
-      
      
       def download
         raise Exception.new('Track is not downloadable') if not downloadable

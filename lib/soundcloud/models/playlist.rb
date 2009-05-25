@@ -1,8 +1,6 @@
 module Soundcloud
   module Models
-    # Soundcloud Playlist resource
-    #
-    # Note: At the moment, you cant create or delete playlists via Soundcloud API
+    # Note: At the moment, you can't create or delete playlists via Soundcloud API
     #
     # Look up the resource attributes and filtering usage here:
     #
