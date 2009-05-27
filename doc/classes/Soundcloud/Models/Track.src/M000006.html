@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>create (Soundcloud::Models::Track)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/soundcloud/models/track.rb, line 125</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@asset_data</span>.<span class="ruby-identifier">nil?</span>
+          <span class="ruby-keyword kw">super</span>
+        <span class="ruby-keyword kw">else</span>
+         <span class="ruby-comment cmt">#post asset_data            </span>
+         <span class="ruby-identifier">params</span> = {<span class="ruby-value str">'track[title]'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">title</span>,<span class="ruby-value str">'track[sharing]'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">sharing</span>}
+         <span class="ruby-identifier">response</span> = <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">handle_response</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">send_multipart_request</span>(<span class="ruby-identifier">:post</span>,<span class="ruby-value str">'/tracks'</span>,<span class="ruby-value str">'track[asset_data]'</span>,<span class="ruby-ivar">@asset_data</span>,<span class="ruby-identifier">params</span>))
+         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">id</span> = <span class="ruby-identifier">id_from_response</span>(<span class="ruby-identifier">response</span>)
+         <span class="ruby-ivar">@asset_data</span> = <span class="ruby-keyword kw">nil</span>
+         <span class="ruby-comment cmt"># second, 'normal' update request</span>
+         <span class="ruby-identifier">update</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

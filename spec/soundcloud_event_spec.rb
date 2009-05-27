@@ -11,4 +11,9 @@ describe 'Soundcloud::Models::Event' do
   it 'should get the last events' do
     events = @sc.Event.find(:all)
   end
+  
+  it 'should get a fan event and should provide the user resource' do
+    fan_events = @sc.Event.find(:all,:params => {:type => 'Fan'})
+    fan_events.first.user.username.should_not be nil
+  end
 end

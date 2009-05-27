@@ -1,9 +1,20 @@
 module Soundcloud
-  module Models    
-    # Soundcloud Comment resource
+  module Models   
+    # 
+    # SC API Attributes (as of 26/05/09):
+    # * body
+    # * timestamp
+    # * id
+    # * track_id
+    # * user_id
+    # * uri
+    #
+    # Custom Wrapper Attributes/Methods:
+    # * user 
+    # * track
     #
     # Look up the resource attributes and filtering usage here:
-    #    
+    #         
     # http://wiki.github.com/soundcloud/api/documentation#comment
     #
     # Examples:
@@ -13,7 +24,7 @@ module Soundcloud
     #   sc_client.Comment.create({:track => some_track, :body => 'Nice Track!'})
     #  
     #   # optionally you can add a timestamp (in milliseconds)
-    #   sc_client.Comment.create({:track => some_track, :body => 'nice drums!', :timestamp => 5000})
+    #   sc_client.Comment.create({:track => some_track, :body => 'nice drums @ the 5th second!', :timestamp => 5000})
     #
     #   # display all comments of some track
     #   some_track.comments.each do |comment| 

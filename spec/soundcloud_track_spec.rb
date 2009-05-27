@@ -31,7 +31,8 @@ describe "Soundcloud::Models::Track" do
     track = @sc.Track.new
     track.title = 'API Test 1'
     track.sharing = 'private'
-    track.set_asset_data(test_track_file)    
+#    track.set_asset_data(test_track_file)    
+    track.asset_data = test_track_file
     track.save
 
     track.destroy
@@ -63,16 +64,15 @@ describe "Soundcloud::Models::Track" do
     @test_track_1.is_favorite?.should be false
   end  
   
-  it 'should be able to download a track' do
-    track = @sc.Track.find(:one, :from => '/users/api-test-2/tracks/track1-2')
-    track.download
+  it 'should be able to download a private track' do
+    track = @sc.Track.find(:one, :from => '/users/api-test-2/tracks/track3-1')
+    track.download_url
   end
   
-  it 'should be able to download a track (unauthenticated)' do 
+  it 'should be able to download a public track (unauthenticated)' do 
     usc = Soundcloud.register({:site => soundcloud_site})
     track = usc.Track.find(:one, :from => '/users/api-test-2/tracks/track1-2')
-    #    File.open('/tmp/sc-track', 'w') {|f| f.write( track.download ) }
-    track.download
+    track.download_url
   end
   
   it 'should find tracks with a bpm <= 90' do

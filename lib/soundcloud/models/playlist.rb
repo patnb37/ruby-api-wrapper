@@ -2,8 +2,28 @@ module Soundcloud
   module Models
     # Note: At the moment, you can't create or delete playlists via Soundcloud API
     #
-    # Look up the resource attributes and filtering usage here:
+    # SC API Attributes (as of 26/05/09):
+    # * created_at
+    # * description
+    # * genre
+    # * id
+    # * permalink
+    # * title
+    # * user_id
+    # * permalink_url
+    # * uri
+    # * artwork_url
+    # * duration
+    # * type
+    # * user (overwritten by wrapper)
+    # * tracks (array)
     #
+    # Custom Wrapper Attributes/Methods:
+    # * user 
+    # * permissions
+    #    
+    # Look up the resource attributes and filtering usage here:
+    #    
     # http://wiki.github.com/soundcloud/api/documentation#playlist
     # 
     # Examples:

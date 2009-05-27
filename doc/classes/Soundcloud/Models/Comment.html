@@ -80,9 +80,39 @@
 
     <div id="description">
       <p>
-<a href="../../Soundcloud.html">Soundcloud</a> <a
-href="Comment.html">Comment</a> resource
+SC API Attributes (as of 26/05/09):
 </p>
+<ul>
+<li>body
+
+</li>
+<li>timestamp
+
+</li>
+<li>id
+
+</li>
+<li>track_id
+
+</li>
+<li>user_id
+
+</li>
+<li>uri
+
+</li>
+</ul>
+<p>
+Custom Wrapper Attributes/Methods:
+</p>
+<ul>
+<li>user
+
+</li>
+<li>track
+
+</li>
+</ul>
 <p>
 Look up the resource attributes and filtering usage here:
 </p>
@@ -99,7 +129,7 @@ Examples:
   sc_client.Comment.create({:track =&gt; some_track, :body =&gt; 'Nice Track!'})
 
   # optionally you can add a timestamp (in milliseconds)
-  sc_client.Comment.create({:track =&gt; some_track, :body =&gt; 'nice drums!', :timestamp =&gt; 5000})
+  sc_client.Comment.create({:track =&gt; some_track, :body =&gt; 'nice drums @ the 5th second!', :timestamp =&gt; 5000})
 
   # display all comments of some track
   some_track.comments.each do |comment|

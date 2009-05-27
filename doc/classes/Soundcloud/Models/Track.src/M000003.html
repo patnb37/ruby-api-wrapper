@@ -5,20 +5,25 @@
 
 <html>
 <head>
-  <title>download (Soundcloud::Models::Track)</title>
+  <title>download_url (Soundcloud::Models::Track)</title>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File lib/soundcloud/models/track.rb, line 57</span>
-      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">download</span>
+  <pre><span class="ruby-comment cmt"># File lib/soundcloud/models/track.rb, line 95</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">download_url</span>
         <span class="ruby-identifier">raise</span> <span class="ruby-constant">Exception</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">'Track is not downloadable'</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">downloadable</span>
-        <span class="ruby-keyword kw">begin</span>
-          <span class="ruby-identifier">response</span> = <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">handle_response</span>( <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">oauth_connection</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">download_url</span>) )
-        <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">ActiveResource</span><span class="ruby-operator">::</span><span class="ruby-constant">Redirection</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">redirection</span>          
-          <span class="ruby-identifier">response</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span>.<span class="ruby-identifier">get</span>(<span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">redirection</span>.<span class="ruby-identifier">response</span>[<span class="ruby-value str">'Location'</span>]))
+        <span class="ruby-identifier">original_download_url</span> = <span class="ruby-keyword kw">super</span>       
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sharing</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;private&quot;</span> 
+          <span class="ruby-keyword kw">begin</span>
+            <span class="ruby-identifier">response</span> = <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">handle_response</span>( <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">oauth_connection</span>.<span class="ruby-identifier">get</span>( <span class="ruby-identifier">original_download_url</span> ) )
+            <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">original_download_url</span>
+          <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">ActiveResource</span><span class="ruby-operator">::</span><span class="ruby-constant">Redirection</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">redirection</span>          
+            <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">redirection</span>.<span class="ruby-identifier">response</span>[<span class="ruby-value str">'Location'</span>]
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">original_download_url</span>
         <span class="ruby-keyword kw">end</span>
-        <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">response</span>
       <span class="ruby-keyword kw">end</span></pre>
 </body>
 </html>

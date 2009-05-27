@@ -80,6 +80,94 @@
 
     <div id="description">
       <p>
+SC API Attributes (as of 26/05/09):
+</p>
+<ul>
+<li>id
+
+</li>
+<li>username
+
+</li>
+<li>full_name
+
+</li>
+<li>description
+
+</li>
+<li>city
+
+</li>
+<li>country
+
+</li>
+<li>discogs_name
+
+</li>
+<li>myspace_name
+
+</li>
+<li>website
+
+</li>
+<li>website_title
+
+</li>
+<li>online
+
+</li>
+<li>avatar_url
+
+</li>
+<li>permalink_url
+
+</li>
+<li>uri
+
+</li>
+<li>track_count
+
+</li>
+</ul>
+<p>
+Custom Wrapper Attributes/Methods:
+</p>
+<ul>
+<li>tracks
+
+</li>
+<li>contacts
+
+</li>
+<li>comments
+
+</li>
+<li>favorites
+
+</li>
+<li>playlists
+
+</li>
+<li>fans
+
+</li>
+<li>is_contact?
+
+</li>
+<li>add_contact!
+
+</li>
+<li>remove_contact!
+
+</li>
+<li>has_favorite?(track/track_id)
+
+</li>
+<li>has_contact?(user/user_id)
+
+</li>
+</ul>
+<p>
 Look up the resource attributes and filtering usage here:
 </p>
 <p>
@@ -87,9 +175,20 @@ Look up the resource attributes and filtering usage here:
 href="http://wiki.github.com/soundcloud/api/documentation#user">wiki.github.com/soundcloud/api/documentation#user</a>
 </p>
 <p>
+Custom Wrapper Class Methods
+</p>
+<ul>
+<li><a href="User.html#M000008">find_me</a>
+
+</li>
+</ul>
+<p>
 Examples:
 </p>
 <pre>
+  # gets the logged-in user
+  me = client.User.find_me
+
   # gets the user with username userABC
   user = sc_client.User.find('userABC')
 
@@ -98,9 +197,6 @@ Examples:
   joes.each do |user|
     p user.username
   end
-
-  # gets the logged-in user
-  me = client.User.find_me
 
   # checks if the first user named joe is following the second user named joe
   joe1 = joes.first

@@ -1,10 +1,46 @@
 module Soundcloud
   module Models
+    # SC API Attributes (as of 26/05/09):
+    # * id
+    # * username
+    # * full_name
+    # * description
+    # * city
+    # * country
+    # * discogs_name
+    # * myspace_name
+    # * website
+    # * website_title
+    # * online
+    # * avatar_url
+    # * permalink_url
+    # * uri
+    # * track_count
+    #
+    # Custom Wrapper Attributes/Methods:
+    # * tracks
+    # * contacts
+    # * comments
+    # * favorites
+    # * playlists
+    # * fans
+    # * is_contact?
+    # * add_contact!
+    # * remove_contact!
+    # * has_favorite?(track/track_id)
+    # * has_contact?(user/user_id)
+    #    
     # Look up the resource attributes and filtering usage here:
     #        
     # http://wiki.github.com/soundcloud/api/documentation#user
     #
+    # Custom Wrapper Class Methods
+    # * find_me 
+    #
     # Examples:
+    #   # gets the logged-in user
+    #   me = client.User.find_me
+    #    
     #   # gets the user with username userABC
     #   user = sc_client.User.find('userABC')
     #  
@@ -14,8 +50,6 @@ module Soundcloud
     #     p user.username
     #   end
     #   
-    #   # gets the logged-in user
-    #   me = client.User.find_me
     #
     #   # checks if the first user named joe is following the second user named joe
     #   joe1 = joes.first

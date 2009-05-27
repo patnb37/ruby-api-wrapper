@@ -29,7 +29,7 @@ Look at <a href="http://wiki.github.com/soundcloud/api/oauth-example">http://wik
 
 <h3>First steps</h3>
 
-Let's start with a simple app, which will find and display the hottest tracks. You don't need any OAuth authentication to do this.
+Let's start with a simple app. It will find and display the 10 hottest tracks of alltime. You don't need any OAuth authentication to do this.
 
 <pre>
 require 'rubygems'
@@ -42,7 +42,7 @@ require 'soundcloud'
 sc_client = Soundcloud.register
 
 # Find the 10 hottest tracks
-hot_tracks = sc_client.Track.find(:all,:params => {:order => 'order', :limit => 10})
+hot_tracks = sc_client.Track.find(:all,:params => {:order => 'hotness', :limit => 10})
 
 # and display their titles
 p '==the 10 hottest tracks=='
@@ -69,7 +69,7 @@ sc_consumer = Soundcloud.consumer('YOUR_APPLICATION_CONSUMER_TOKEN','YOUR_APPLIC
 access_token = OAuth::AccessToken.new(sc_consumer, 'YOUR_OAUTH_ACCESS_TOKEN', 'YOUR_OAUTH_ACCESS_SECRET')
 
 # Create an authenticated Soundcloud client, based on the access token
-sc_client = Soundcloud.register({ :access_token => access_token})
+sc_client = Soundcloud.register({:access_token => access_token})
 
 # Get the logged in user 
 my_user = sc_client.User.find_me
@@ -79,25 +79,25 @@ p "Hello, my name is #{my_user.full_name}"
 
 </pre>
 
-Find more examples in the "Model ..." pages.
+Find more examples in these pages: [[Model Events]], [[Model Users]], [[Model Tracks]], [[Model Playlists]], [[Model Comments]].
 
 
 <h2>Sub-resources</h2>
 
 The Soundcloud API provides 3 different types of sub-resources:
-<h3>Nested</h3>
+<h3>Nested sub-resources</h3>
 
-These are directly embedded in the response. For example a playlist has a track array.
+These are directly embedded in the resource. For example a playlist has a track array.
   
   <pre>playlist.tracks</pre>
   
 When saving the original resource, the nested array will be saved as well.
 
-<pre>playlist.tracks.push some_track
+<pre>playlist.tracks &lt;&lt; some_track
 playlist.save
 </pre>
   
-<h3>Separate</h3>
+<h3>Separate sub-resources</h3>
 
 These are separated from the original resource.
 Example:
@@ -111,7 +111,7 @@ In ruby they are accessed like nested resources:
   
 But have to be saved explicitly:
 <pre>
-playlist.permissions.push some_user
+playlist.permissions &lt;&lt; some_user
 playlist.permissions.save
 playlist.save</pre>
 
@@ -130,7 +130,7 @@ end while some_fans.count >= limit
 The array fans now contains all fans/followers of famous_dj.
 
 
-<h3>'Single changeable' separate</h3>
+<h3>'Single changeable' separate sub-resources</h3>
 
 Some separate collections can't be saved in a bulk request. Instead each item has to be added or removed explicitly.
 For now this only affects the contacts (followees) and favorites of a user.

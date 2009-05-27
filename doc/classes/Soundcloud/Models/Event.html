@@ -80,6 +80,26 @@
 
     <div id="description">
       <p>
+SC API Attributes (as of 26/05/09):
+</p>
+<ul>
+<li>type
+
+</li>
+<li>id
+
+</li>
+<li>created_at
+
+</li>
+<li>resource_id
+
+</li>
+<li>comment/track/user (embedded resource, depending on type)
+
+</li>
+</ul>
+<p>
 Look up the resource attributes and filtering usage here:
 </p>
 <p>
@@ -90,8 +110,12 @@ href="http://wiki.github.com/soundcloud/api/documentation#event">wiki.github.com
 Examples:
 </p>
 <pre>
-  # find the last 50 (default soundcloud limit) dropbox events
-  sc_client.Event.find(:all,:params =&gt; {:filter =&gt; 'drop'})
+  # find the last 50 (default soundcloud limit) dropbox events and display the titles of the dropped tracks
+  dropbox_events = sc_client.Event.find(:all,:params =&gt; {:filter =&gt; 'drop'})
+
+  dropbox_events.each do |event|
+    p event.track.title
+  end
 
   # find the last 50 (default soundcloud limit)  events
   sc_client.Event.find(:all)
