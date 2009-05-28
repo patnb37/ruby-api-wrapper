@@ -62,7 +62,7 @@ describe "Soundcloud::Models::User" do
     @api_test_2.fans({:limit => 1}).count.should be == 1
     @api_test_2.fans({:limit => 2}).count.should be == 2
   end
-
+  
 end
 
 

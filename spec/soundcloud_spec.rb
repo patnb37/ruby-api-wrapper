@@ -11,7 +11,7 @@ require 'spec_helper'
 # api-test-2 follows api-test-1 and api-test-3
 # api-test-3 follows api-test-2 but NOT api-test-1
 # 
-# api-test-2 has 3 Tracks [Track1 (downloadable),Track2,Track3]
+# api-test-2 has 3 Tracks [Track1 (public,downloadable),Track2,Track3(private,downloadable)]
 # api-test-2 has favorites: Track1 but NOT Track2
 # api-test-2 has 'static-test-playlist' with Track1, 2 and 3
 #

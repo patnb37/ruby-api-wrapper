@@ -1,6 +1,6 @@
 module Soundcloud
   module Models
-    # Note: At the moment, you can't create or delete playlists via Soundcloud API
+    # Note: At the moment, you can't create or delete playlists or change their permissions via Soundcloud API
     #
     # SC API Attributes (as of 26/05/09):
     # * created_at
@@ -20,7 +20,6 @@ module Soundcloud
     #
     # Custom Wrapper Attributes/Methods:
     # * user 
-    # * permissions
     #    
     # Look up the resource attributes and filtering usage here:
     #    
@@ -29,15 +28,10 @@ module Soundcloud
     # Examples:
     #
     #   # Find a Playlist and add a track to it
-    #   playlist = sc_client.Playlist('my-playlist')   
-    #   track = sc_client.Track('my-track')
+    #   playlist = sc_client.Playlist.find('my-playlist')   
+    #   track = sc_client.Track.find('my-track')
     #   playlist.tracks << track
     #   playlist.save   
-    #
-    #   # Allow a user to access this track
-    #   some_user = sc_client.User.find('some-user')
-    #   playlist.permissions << some_user
-    #   playlist.permissions.save
     #
     #   # Delete first song in playlist
     #   playlist.tracks.delete playlist.tracks.first
@@ -46,7 +40,7 @@ module Soundcloud
 
     class Playlist < Base
       belongs_to :user
-      has_many :permissions
+      #      has_many :permissions
       cattr_accessor :element_name    
       self.element_name = 'playlist'    
       def initialize(*args)

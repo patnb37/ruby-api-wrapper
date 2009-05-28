@@ -80,8 +80,8 @@
 
     <div id="description">
       <p>
-Note: At the moment, you can&#8216;t create or delete playlists via <a
-href="../../Soundcloud.html">Soundcloud</a> API
+Note: At the moment, you can&#8216;t create or delete playlists or change
+their permissions via <a href="../../Soundcloud.html">Soundcloud</a> API
 </p>
 <p>
 SC API Attributes (as of 26/05/09):
@@ -137,9 +137,6 @@ Custom Wrapper Attributes/Methods:
 <li>user
 
 </li>
-<li>permissions
-
-</li>
 </ul>
 <p>
 Look up the resource attributes and filtering usage here:
@@ -153,15 +150,10 @@ Examples:
 </p>
 <pre>
   # Find a Playlist and add a track to it
-  playlist = sc_client.Playlist('my-playlist')
-  track = sc_client.Track('my-track')
+  playlist = sc_client.Playlist.find('my-playlist')
+  track = sc_client.Track.find('my-track')
   playlist.tracks &lt;&lt; track
   playlist.save
-
-  # Allow a user to access this track
-  some_user = sc_client.User.find('some-user')
-  playlist.permissions &lt;&lt; some_user
-  playlist.permissions.save
 
   # Delete first song in playlist
   playlist.tracks.delete playlist.tracks.first
@@ -177,7 +169,7 @@ Examples:
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000009">new</a>&nbsp;&nbsp;
+      <a href="#M000010">new</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -199,12 +191,12 @@ Examples:
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000009" class="method-detail">
-        <a name="M000009"></a>
+      <div id="method-M000010" class="method-detail">
+        <a name="M000010"></a>
 
         <div class="method-heading">
-          <a href="Playlist.src/M000009.html" target="Code" class="method-signature"
-            onclick="popupCode('Playlist.src/M000009.html');return false;">
+          <a href="Playlist.src/M000010.html" target="Code" class="method-signature"
+            onclick="popupCode('Playlist.src/M000010.html');return false;">
           <span class="method-name">new</span><span class="method-args">(*args)</span>
           </a>
         </div>

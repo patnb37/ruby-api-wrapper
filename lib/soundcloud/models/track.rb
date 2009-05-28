@@ -42,6 +42,8 @@ module Soundcloud
     #
     # Examples:
     #
+    #   some_user = sc_client.User.find('some_user')
+    #    
     #   # gets 50 (Soundcloud API limit) tracks from some_user
     #   some_user_tracks = some_user.tracks
     #
@@ -58,6 +60,10 @@ module Soundcloud
     #     p "#{comment.user.username} #{timestamp}: #{comment.body}"
     #   end
     #
+    #   # downloads the original track file (track.downloadable must be true)
+    #   # (the open call requires the 'open-uri' gem)
+    #   downloaded_file = open first_song.download_url
+    #
     #
     #   # gets 50 (Soundcloud API limit) tracks with a BPM <= 100    
     #   slow_tracks  = sc_client.Track.find(:all, :params => { "bpm[to]" => "100"} )
@@ -69,18 +75,10 @@ module Soundcloud
     #   new_track.sharing = 'private'
     #   new_track.asset_data = File.new('some_sound_file.wav')
     #   new_track.save
-    #   
-    #   # downloads the original soundfile. 
-    #   #some_sound_file.wav and downloaded_file should be the same (the open call requires the 'open-uri' gem)
-    #   downloaded_file = open new_track.download_url
     #
     #   # gives some_user permission to access the new_track    
-    #   some_user = sc_client.User.find('some_user')
     #   new_track.permissions << some_user
     #   new_track.permissions.save
-    #
-    #  
-    #
     #
     
     class Track < Base

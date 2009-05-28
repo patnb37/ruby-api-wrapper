@@ -8,6 +8,9 @@ module Soundcloud
     # * resource_id
     # * comment/track/user (embedded resource, depending on type)
     #
+    # Custom Wrapper Attribute:
+    # * event_type (access to type attribute, since 'type' is a ruby keyword)
+    #
     # Look up the resource attributes and filtering usage here:
     #    
     # http://wiki.github.com/soundcloud/api/documentation#event
@@ -25,9 +28,13 @@ module Soundcloud
     #   sc_client.Event.find(:all)
     #
     class Event < Base    
-      #belongs_to :user, :track, :comment # this is not right
       cattr_accessor :element_name    
       self.element_name = 'event'
+      
+      
+      def event_type 
+        return attributes['type']
+      end
     end    
   end
 end

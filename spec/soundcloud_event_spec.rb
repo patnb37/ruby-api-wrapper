@@ -12,8 +12,19 @@ describe 'Soundcloud::Models::Event' do
     events = @sc.Event.find(:all)
   end
   
-  it 'should get a fan event and should provide the user resource' do
-    fan_events = @sc.Event.find(:all,:params => {:type => 'Fan'})
-    fan_events.first.user.username.should_not be nil
+  it 'should get fan events and they should provide the user resource' do
+    fan_events = @sc.Event.find(:all,:params => {:filter => 'fan'})
+    fan_events.each do |event|
+      event.event_type.should be == "Fan"
+      event.user.username.should_not be nil      
+    end
+  end
+  
+  it 'should get track events and they should provide the track resource' do
+    events = @sc.Event.find(:all,:params => {:filter => 'track'})
+    events.each do |event|
+      event.event_type.should be == "Track"
+      event.track.title.should_not be nil      
+    end    
   end
 end
