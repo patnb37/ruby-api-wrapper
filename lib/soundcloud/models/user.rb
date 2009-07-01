@@ -70,9 +70,9 @@ module Soundcloud
     #   fans = []
     #   limit = 50
     #   begin 
-    #     some_fans = famous_dj.fans({:offset => fans.count, :limit => limit})
+    #     some_fans = famous_dj.fans({:offset => fans.length, :limit => limit})
     #     fans += some_fans
-    #   end while some_fans.count >= limit
+    #   end while some_fans.length >= limit
     #
     #
     

@@ -22,20 +22,20 @@ describe 'Soundcloud::Models::Playlist' do
   
   it 'should be able to find an existing playlist' do 
     pl = @sc.Playlist.find('static-test-playlist')
-    pl.tracks.count.should be >= 3    
+    pl.tracks.length.should be >= 3    
   end
   
   it 'should be able to delete tracks of a playlist and put them back' do 
     pl = @sc.Playlist.find('my-static-playlist')    
-    old_count = pl.tracks.count
+    old_count = pl.tracks.length
     deleted_track = pl.tracks.first
     pl.tracks.delete_at 0
     pl.save
-    pl.tracks.count.should be == old_count -1
+    pl.tracks.length.should be == old_count -1
     
     pl.tracks << deleted_track
     pl.save
-    pl.tracks.count.should be == old_count
+    pl.tracks.length.should be == old_count
   end
   
   it 'should belong to a user' do

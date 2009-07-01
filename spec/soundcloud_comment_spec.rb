@@ -11,13 +11,13 @@ describe 'Soundcloud::Models::Comment' do
   
   it 'should be able to create and delete a new comment for a track' do
 
-    old_count = @track.comments.count  
+    old_count = @track.comments.length  
     comment = @sc.Comment.create({:track_id => @track.id, :body => "new API Test comment"})
-    @track.comments.reload.count.should be old_count + 1
+    @track.comments.reload.length.should be old_count + 1
     
     comment.destroy
     
-    @track.comments.reload.count.should be old_count
+    @track.comments.reload.length.should be old_count
   end
   
   it 'should belong to a track and a user' do

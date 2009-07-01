@@ -25,7 +25,7 @@ describe "Soundcloud::Models::User" do
   it 'should find all api-test users' do
     test_for = 'api-test'
     users = @sc.User.find(:all , :params => {:q => test_for})
-    users.count.should be >= 3
+    users.length.should be >= 3
   end
   
   it 'should check if a user has a contact' do 
@@ -55,12 +55,12 @@ describe "Soundcloud::Models::User" do
   end
   
   it 'should find some fans of a user' do 
-    @api_test_2.fans.count.should be >= 1
+    @api_test_2.fans.length.should be >= 1
   end
   
   it 'should find exactly one fan / two fans' do 
-    @api_test_2.fans({:limit => 1}).count.should be == 1
-    @api_test_2.fans({:limit => 2}).count.should be == 2
+    @api_test_2.fans({:limit => 1}).length.should be == 1
+    @api_test_2.fans({:limit => 2}).length.should be == 2
   end
   
 end

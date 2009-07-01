@@ -43,17 +43,17 @@ describe "Soundcloud::Models::Track" do
   it 'should be able to add a user to permissions of a track and delete it again' do
     track = @sc.Track.find(:one, :from => '/users/api-test-1/tracks/static-test-track')   
     
-    old_count = track.permissions.count
+    old_count = track.permissions.length
 
     track.permissions << @api_test_3    
     track.permissions.save
     
-    track.permissions.count.should be(old_count+1)    
+    track.permissions.length.should be(old_count+1)    
     
     track.permissions.delete( @api_test_3 )
     track.permissions.save
     
-    track.permissions.count.should be(old_count)  
+    track.permissions.length.should be(old_count)  
   end
   
   it 'should add, check and remove a favorite to "me"' do
