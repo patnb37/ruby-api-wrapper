@@ -4,7 +4,7 @@
 
 require 'rubygems'
 
-gem 'oauth'
+gem 'oauth', '0.3.4'
 require 'oauth'
 
 gem 'jwagener-oauth-active-resource'
