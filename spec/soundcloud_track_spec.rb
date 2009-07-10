@@ -28,6 +28,7 @@ describe "Soundcloud::Models::Track" do
   it "should be able to create a new track and default to sharing=private" do
     test_track_file = File.new( File.dirname(__FILE__) + '/fixtures/test_track.mp3')
     track = @sc.Track.create({:title => "test", :asset_data => test_track_file})
+    
     track.sharing.should == 'private'
     track.permalink.should_not == nil
   end

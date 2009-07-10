@@ -86,8 +86,8 @@ module Soundcloud
       has_many :permissions, :comments
       can_be_a_single_changeable :favorite
             
+      attr_accessor :sharing
       cattr_accessor :element_name
-      attr_accessor :asset_data
       self.element_name = 'track'
      
       def download_url
@@ -106,14 +106,13 @@ module Soundcloud
       end
       
       # multipart stuff, to upload a soundfile 
-          
-      @asset_data = nil
+        
       def set_asset_data(file)
-        @asset_data = file          
+        self.asset_data = file          
       end
         
       def update
-        if not @asset_data.nil?
+        if not self.asset_data.nil?
           raise 'Multipart update is NotImplemented'
           self.class.send_multipart_request(:put,'/tracks/#{self.id}','replacement[asset_data]',@asset_data)
         end
@@ -121,14 +120,20 @@ module Soundcloud
       end
                 
       def create
-        if @asset_data.nil?
+        if self.asset_data.nil?
           super
         else
-         #post asset_data            
+         #post asset_data 
+         
+         # default to private
+         self.sharing ||= 'private'
+         
          params = {'track[title]' => self.title,'track[sharing]' => self.sharing}
-         response = connection.handle_response(self.class.send_multipart_request(:post,'/tracks','track[asset_data]',@asset_data,params))
+         response = connection.handle_response(self.class.send_multipart_request(:post,'/tracks','track[asset_data]',self.asset_data,params))
+         
          self.id = id_from_response(response)
-         @asset_data = nil
+         load_attributes_from_response(response)
+         self.asset_data = nil
          # second, 'normal' update request
          update
       end
