@@ -1,4 +1,4 @@
-require 'spec_helper'
+require File.dirname(__FILE__) + '/spec_helper'
 
 # this spec tests against api.sandbox-soundcloud.com
 # it makes the follwing assumptions

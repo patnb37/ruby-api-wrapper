@@ -1,4 +1,4 @@
-require 'spec_helper'
+require File.dirname(__FILE__) + '/spec_helper'
 
 describe "Soundcloud::Models::Track" do 
   before(:all) do
@@ -25,13 +25,19 @@ describe "Soundcloud::Models::Track" do
 
   end
   
+  it "should be able to create a new track and default to sharing=private" do
+    test_track_file = File.new( File.dirname(__FILE__) + '/fixtures/test_track.mp3')
+    track = @sc.Track.create({:title => "test", :asset_data => test_track_file})
+    track.sharing.should == 'private'
+    track.permalink.should_not == nil
+  end
+  
   it 'should be able to create a new track and remove it' do
-    test_track_file = File.new('spec/fixtures/test_track.mp3')
+    test_track_file = File.new(File.dirname(__FILE__) + '/fixtures/test_track.mp3')
 
     track = @sc.Track.new
     track.title = 'API Test 1'
-    track.sharing = 'private'
-#    track.set_asset_data(test_track_file)    
+    track.sharing = 'private' 
     track.asset_data = test_track_file
     track.save
 
