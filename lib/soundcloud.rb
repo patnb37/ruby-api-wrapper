@@ -23,8 +23,7 @@ module Soundcloud
         :site               => site,
         :request_token_path => "/oauth/request_token",
         :access_token_path  => "/oauth/access_token",
-        :authorize_path     => "/oauth/authorize",
-        :scheme             => :query_string
+        :authorize_path     => "/oauth/authorize"
       })    
   end
 
