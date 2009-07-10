@@ -129,14 +129,20 @@ module Soundcloud
            self.sharing = 'private'
          end
          
-         params = {'track[title]' => self.title,'track[sharing]' => self.sharing}
-         response = connection.handle_response(self.class.send_multipart_request(:post,'/tracks','track[asset_data]',self.asset_data,params))
+         params = ActiveSupport::OrderedHash.new
+         self.attributes.reject { |k,v| k.to_s == 'asset_data'}.each { |k,v| 
+             params["track[#{k}]".to_sym] = v 
+         }
          
+         # ignore is added because the multipart gem is adding an extra new line 
+         # to the last parameter which will break parsing of track[sharing]
+         params[:ignore] = 'multipart bug'
+         
+         response = connection.handle_response(self.class.send_multipart_request(:post,'/tracks','track[asset_data]',self.asset_data,params))
+
          self.id = id_from_response(response)
          load_attributes_from_response(response)
          self.asset_data = nil
-         # second, 'normal' update request
-         update
       end
     end      
   end    
