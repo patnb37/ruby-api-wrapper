@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{ruby-api-wrapper}
-  s.version = "0.2.1"
+  s.version = "0.3.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Johannes Wagener"]
-  s.date = %q{2009-07-03}
+  s.date = %q{2009-07-10}
   s.email = %q{johannes@wagener.cc}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -21,37 +21,6 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION.yml",
-     "doc/classes/Soundcloud.html",
-     "doc/classes/Soundcloud.src/M000001.html",
-     "doc/classes/Soundcloud.src/M000002.html",
-     "doc/classes/Soundcloud/Models.html",
-     "doc/classes/Soundcloud/Models/Comment.html",
-     "doc/classes/Soundcloud/Models/Comment.src/M000007.html",
-     "doc/classes/Soundcloud/Models/Event.html",
-     "doc/classes/Soundcloud/Models/Event.src/M000009.html",
-     "doc/classes/Soundcloud/Models/Playlist.html",
-     "doc/classes/Soundcloud/Models/Playlist.src/M000009.html",
-     "doc/classes/Soundcloud/Models/Playlist.src/M000010.html",
-     "doc/classes/Soundcloud/Models/Track.html",
-     "doc/classes/Soundcloud/Models/Track.src/M000003.html",
-     "doc/classes/Soundcloud/Models/Track.src/M000004.html",
-     "doc/classes/Soundcloud/Models/Track.src/M000005.html",
-     "doc/classes/Soundcloud/Models/Track.src/M000006.html",
-     "doc/classes/Soundcloud/Models/User.html",
-     "doc/classes/Soundcloud/Models/User.src/M000008.html",
-     "doc/created.rid",
-     "doc/files/lib/soundcloud/models/base_rb.html",
-     "doc/files/lib/soundcloud/models/comment_rb.html",
-     "doc/files/lib/soundcloud/models/event_rb.html",
-     "doc/files/lib/soundcloud/models/playlist_rb.html",
-     "doc/files/lib/soundcloud/models/track_rb.html",
-     "doc/files/lib/soundcloud/models/user_rb.html",
-     "doc/files/lib/soundcloud_rb.html",
-     "doc/fr_class_index.html",
-     "doc/fr_file_index.html",
-     "doc/fr_method_index.html",
-     "doc/index.html",
-     "doc/rdoc-style.css",
      "lib/soundcloud.rb",
      "lib/soundcloud/models/base.rb",
      "lib/soundcloud/models/comment.rb",
