@@ -86,7 +86,6 @@ module Soundcloud
       has_many :permissions, :comments
       can_be_a_single_changeable :favorite
             
-      attr_accessor :sharing
       cattr_accessor :element_name
       self.element_name = 'track'
      
@@ -126,7 +125,9 @@ module Soundcloud
          #post asset_data 
          
          # default to private
-         self.sharing ||= 'private'
+         if self.sharing?.nil? 
+           self.sharing = 'private'
+         end
          
          params = {'track[title]' => self.title,'track[sharing]' => self.sharing}
          response = connection.handle_response(self.class.send_multipart_request(:post,'/tracks','track[asset_data]',self.asset_data,params))
