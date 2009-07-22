@@ -55,6 +55,17 @@ describe "Soundcloud::Models::Track" do
     lambda { track.reload }.should raise_error ActiveResource::ResourceNotFound
   end
   
+  it 'should be able to update an attribute' do
+    track = @sc.Track.find('static-test-track')   
+
+    track.title = 'This is updated'
+    track.save
+
+    track.reload
+
+    track.title.should == 'This is updated'
+  end
+  
   it 'should be able to add a user to permissions of a track and delete it again' do
     track = @sc.Track.find(:one, :from => '/users/api-test-1/tracks/static-test-track')   
     

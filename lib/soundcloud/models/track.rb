@@ -111,7 +111,7 @@ module Soundcloud
       end
         
       def update
-        if not self.asset_data.nil?
+        unless attributes[:asset_data].nil?
           raise 'Multipart update is NotImplemented'
           self.class.send_multipart_request(:put,'/tracks/#{self.id}','replacement[asset_data]',@asset_data)
         end
